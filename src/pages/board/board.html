@@ -1,0 +1,58 @@
+<ion-content class="nomargin">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="circles"
+      refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let board of boards" style="box-shadow: none;" class="anim-opacityShow">
+    <!-- <ng-container *ngIf="board.countdown > 0"> -->
+      <ng-container >
+	  <!-- <img src="assets/images/questionImage.png" *ngIf="board.attributes.image=='assets/images/addImage.png'" /> -->
+    <img [(class)]="board.attributes.filter" (click)="openBoardDetail(board)" src="{{board.attributes.image}}" *ngIf="board.attributes.image!='assets/images/addImage.png'" />
+	  <ion-card-content style="border-bottom:1px solid #ddd;">
+	    <!-- <ion-card-title (click)="openBoardDetail(board)">
+	      {{board.attributes.title}}
+	    </ion-card-title> -->
+      <p (click)="openBoardDetail(board)">
+        {{board.attributes.content}}
+      </p>
+      <p>
+        <span class="opacity-txt" ion-right>
+          话题将于 {{board.time}}后关闭
+        </span>
+      </p>
+
+      <ion-grid  style="padding: 0;">
+        <ion-row style="padding: 0;">
+          <ion-col col-7  style="padding: 0;">
+            <a color="light" (click)="openBoardUserDetail(board)">
+              <!-- <ion-icon name="glasses"></ion-icon> -->
+              {{board.attributes.userName}}
+            </a>
+          </ion-col>
+          <ion-col  class="text-right" col-5  style="padding: 0;">
+            <!-- <a class="h2" (click)="openBoardCommentPage(board)">
+              <ion-icon name="text"></ion-icon>
+             &nbsp;评论  ({{board.attributes.commentsCount}})
+            </a> -->
+            <span class="opacity-txt text-right" *ngIf="board.one == false">
+              距离：{{board.three}} 米
+            </span>
+            <span class="opacity-txt text-right" *ngIf="board.one == true">
+              距离：{{board.three}} 公里
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      
+	  </ion-card-content>
+
+    </ng-container>
+  </ion-card>
+
+
+</ion-content>

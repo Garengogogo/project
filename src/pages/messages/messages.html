@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      消息
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-list>
+    
+      <ion-item (click)="openSysMessagesDetail('system',[])">
+        <ion-avatar item-start>
+          <img src="assets/images/logo.png">
+        </ion-avatar>
+        <h2>系统消息</h2>
+        <ion-badge item-end>{{newSystemMessageNum}}</ion-badge>
+        
+      </ion-item>
+  </ion-list>
+
+  <ion-list>
+  <ion-list-header>
+    我关注的
+  </ion-list-header>
+  <ion-item-sliding *ngFor = "let user of friends1">
+
+    <ion-item (click)="openSysMessagesDetail(user,user.newMsg)">
+      <ion-avatar item-start>
+        <!-- <img src="assets/images/defaulthead.png"> -->
+        <img src="assets/images/questionImage.png" *ngIf="!user.attributes.headimg">
+        <img [(src)]="user.attributes.headimg"
+        *ngIf="user.attributes.headimg">
+      </ion-avatar>
+      <h2>{{user.attributes.username}}</h2>
+      <ion-badge item-end  color="danger"
+      *ngIf="user.newMsgCount>0">{{user.newMsgCount}}</ion-badge>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="msg"></ion-icon>
+        消息
+      </button>
+      <button ion-button color="secondary">
+        <ion-icon name="detail"></ion-icon>
+        详情
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+  </ion-list>
+  <ion-list>
+  <ion-list-header>
+    关注我的
+  </ion-list-header>
+  <ion-item-sliding *ngFor = "let user of friends2">
+    
+    <ion-item  (click)="openSysMessagesDetail(user,user.newMsg)">
+      <ion-avatar item-start>
+        <img src="assets/images/questionImage.png" *ngIf="!user.attributes.headimg">
+        <img [(src)]="user.attributes.headimg"
+        *ngIf="user.attributes.headimg">
+      </ion-avatar>
+      <h2>{{user.attributes.username}}</h2>
+      <ion-badge item-end color="danger" 
+      *ngIf="user.newMsgCount>0">{{user.newMsgCount}}</ion-badge>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="msg"></ion-icon>
+        消息
+      </button>
+      <button ion-button color="secondary">
+        <ion-icon name="detail"></ion-icon>
+        详情
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+
+    <!--<ion-item-sliding>-->
+      <!--<ion-item >-->
+        <!--<ion-avatar item-start>-->
+          <!--<img src="assets/images/2.jpg">-->
+        <!--</ion-avatar>-->
+        <!--<h2>路飞</h2>-->
+        <!--<p>13611111111</p>-->
+        <!--<ion-note item-end>-->
+          <!--2017.8.19-->
+        <!--</ion-note>-->
+      <!--</ion-item>-->
+      <!--<ion-item-options side="right">-->
+        <!--<button ion-button color="primary">-->
+          <!--<ion-icon name="msg"></ion-icon>-->
+          <!--消息-->
+        <!--</button>-->
+        <!--<button ion-button color="secondary">-->
+          <!--<ion-icon name="detail"></ion-icon>-->
+          <!--详情-->
+        <!--</button>-->
+      <!--</ion-item-options>-->
+    <!--</ion-item-sliding>-->
+
+    <!--<ion-item-sliding>-->
+      <!--<ion-item >-->
+        <!--<ion-avatar item-start>-->
+          <!--<img src="assets/images/3.jpg">-->
+        <!--</ion-avatar>-->
+        <!--<h2>路飞</h2>-->
+        <!--<p>13611111111</p>-->
+        <!--<ion-note item-end>-->
+          <!--2017.8.19-->
+        <!--</ion-note>-->
+      <!--</ion-item>-->
+      <!--<ion-item-options side="right">-->
+        <!--<button ion-button color="primary">-->
+          <!--<ion-icon name="msg"></ion-icon>-->
+          <!--消息-->
+        <!--</button>-->
+        <!--<button ion-button color="secondary">-->
+          <!--<ion-icon name="detail"></ion-icon>-->
+          <!--详情-->
+        <!--</button>-->
+      <!--</ion-item-options>-->
+    <!--</ion-item-sliding>-->
+  </ion-list>
+
+
+
+</ion-content>

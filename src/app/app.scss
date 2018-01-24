@@ -1,0 +1,360 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.opacity-txt{
+	opacity:0.5;
+}
+.div-align-list{
+	padding:10px;
+}
+.pre-wrap{
+	white-space:pre-wrap;
+}
+.m-b-0{
+	margin-bottom: 0;
+}
+p.userName{
+	width: 80px;
+	overflow: hidden;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.headimg_list_o{
+	width:40px;
+	height:40px;
+	border-radius: 50%;
+	overflow: hidden;
+	background: #999;
+	float: left;
+	margin-right: 10px;
+	img{
+
+
+	}
+}
+.action-card{
+	height:240px;
+	over-flow:hidden;
+}
+
+.image-grayscale{
+  filter: grayscale(50%);
+}
+
+.image-saturate{
+  filter: saturate(360%);
+}
+
+.image-sepia{
+  filter: sepia(100%);
+}
+
+.image-invert{
+  filter: invert(100%);
+}
+
+.image-opacity {
+  filter: opacity(50%);
+}
+
+.image-brightness {
+  filter: brightness(120%);
+}
+
+.image-contrast{
+  filter: contrast(160%);
+}
+
+.image-hue-rotate{
+  filter: hue-rotate(160deg);
+}
+
+.image-blur {
+  filter: blur(2px);
+}
+
+.img-filter-list img{
+	border:1px solid #ffffff;
+}
+.img-filter-list img.selected{
+	border:1px solid #ff9933;
+}
+
+.nomargin .card-md{
+  margin-left:0px;
+  margin-right:0px;
+  width:100% ;
+}
+.fullwidth{
+	width: 100%;
+}
+
+.usertypeicon{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 100;
+	line-height: 30px;
+	img{
+		width: 40px;
+		display: inline-block;
+		float: right;
+	}
+	span{
+		display: inline-block;
+		float: right;
+		color: #a5a599;
+	}
+
+}
+.userInfoHead{
+	padding: 20px 20px 0 20px;
+	text-align: center;
+	img{
+		border-radius: 160px;
+		width: 100px;
+		height: 100px
+	}
+}
+.text-center{
+	text-align: center;
+}
+.info-line{
+	padding: 15px 0;
+	margin: 0 20px;
+
+	label{
+		display: inline-block;
+		width: 140px;
+		text-align: right;
+		color: #666;
+	}
+	span{
+		display: inline-block;
+		color: #999;
+		padding-left: 20px;
+
+	}
+}
+.border-bt{
+	border-bottom: 2px solid #eee;
+}
+.action_lable_outbox{
+	position: relative;
+	.action_lable{
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		width: 20%;
+
+	}
+}
+.ctrlbtns{
+	text-align: right;
+}
+
+.action_status_text{
+	background: #f79502;
+	color: #fff;
+	padding:5px 20px;
+	position: absolute;
+	top: 20px;
+	left:0;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+.action_status_text.beginAction{
+	background: #9fcd03;
+}
+.action_status_text.complateAction{
+	background: #9a9;
+}
+.title-logo{
+	height: 26px;
+	margin-top:4px;
+}
+ion-header{
+	background: #fff;
+	ion-toolbar{
+		background: #fff;
+	}
+}
+.border-bt{
+	border-bottom: 1px solid #eee;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.content-subtitle{
+	line-height: 40px;
+
+}
+.text-box{
+	border:1px solid #ddd;
+	padding:20px;
+	margin: 10px 0;
+}
+.text-right{
+	text-align: right;
+}
+.tabs-md .tab-button-text{
+	font-size: 1rem;
+}
+.tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text{
+	margin-top:0;
+}
+.tabs-md .tab-button{
+	min-height: 4.2rem;
+}
+
+.toolbar-md{
+	padding: 0;
+	min-height: 40px;
+}
+.header{
+	height: 40px;
+}
+.segment-md .segment-button{
+	color: #777;
+}
+.segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
+	color: #f79502;
+}
+.error-message {
+  color: red;
+}
+// .platform-ios .richy-tabs{
+// 	margin-top:20px;
+// 	padding-top:20px;
+
+// }
+// .header-ios{
+// 	height:24px;
+// 	.toolbar-ios{
+// 		height: 24px;
+// 		min-height: 20px;
+// 		.bar-button-ios{
+// 			font-size: 1rem;
+// 		}
+// 	}
+// }
+
+.platform-ios .scroll-content{
+	margin-top:26px;
+}
+// .platform-ios ion-header{
+// 	background:#fefefe;
+// 	ion-toolbar{
+// 		background:#fefefe;
+// 		.toolbar-background-ios{
+// 			background:none;
+// 		}
+// 	}
+// }
+.platform-ios .ctrlbtns{
+	padding-top:20px;
+}
+.platform-ios ion-tab{
+	background:#fff;
+}
+.platform-ios .calendar{
+	top:20px;
+
+}
+
+.calendar .monthview-selected[_ngcontent-c1]{
+	background:#f79502;
+}
+.calendar .monthview-primary-with-event[_ngcontent-c1]{
+	background:#ffd089;
+}
+.calendar .monthview-secondary-with-event[_ngcontent-c1]{
+	background:#ffd089;
+}
+.topIconBtn{
+	color:#999;
+	height:26px;
+	font-size:1.1rem;
+	line-height:32px;
+}
+
+.admActionBox{
+	position:absolute;
+	width:94%;
+	left:3%;
+	top:30%;
+	z-index:100;
+	animation: showSlideDown 1s;
+	.admActionBoxCon{
+		position:relative;
+		.closeBtn{
+			position:absolute;
+			text-align: right;
+			top: -40px;
+			width: 94%;
+			left:3%;
+		    font-size: 30px;
+		    color: #fff;
+		    text-shadow: 3px 3px 3px #333;
+		    z-index: 10;
+		}
+		.admActionBox-card-title{
+			position:absolute;
+			text-align: center;
+			top: -45px;
+			width: 100%;
+		    font-size: 30px;
+		    color: #fff;
+		    text-shadow: 3px 3px 3px #333;
+		    z-index: 5;
+		}
+	}
+}
+.maskTabs{
+	position:fixed;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.3);
+	z-index:99;
+	left:0;
+	top:0;
+}
+
+@keyframes showSlideDown{
+	from {
+		top: 0;
+		opacity: 0;
+	}
+	to {
+		top:30%;
+		opacity: 1;
+	}
+}
+
+@keyframes opacityShow{
+	from {
+		opacity: 0;
+		scale:0.7;
+	}
+	to {
+		opacity: 1;
+		scale:1;
+	}
+}
+.anim-opacityShow{
+	//animation: showSlideDown 1s;
+}

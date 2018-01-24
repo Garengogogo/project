@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{viewTitle}}</ion-title>
+    <ion-buttons end>
+      <button ion-button [disabled]="isToday" (click)="today()">今天</button>
+      <!--<button ion-button (click)="changeMode('month')">月</button>-->
+      <!--<button ion-button (click)="changeMode('week')">周</button>-->
+      <!--<button ion-button (click)="changeMode('day')">天</button>-->
+      <!--<button ion-button (click)="loadEvents()">加载事件</button>-->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="has-header calendar">
+  <calendar [eventSource]="eventSource"
+            [calendarMode]="calendar.mode"
+            [allDayLabel]="calendar.allDayLabel"
+            [noEventsLabel]="calendar.noEventsLabel"
+            [currentDate]="calendar.currentDate"
+            [autoSelect]=true
+            [showEventDetail]=false
+            (onCurrentDateChanged)="onCurrentDateChanged($event)"
+            (onEventSelected)="onEventSelected($event)"
+            (onTitleChanged)="onViewTitleChanged($event)"
+            (onTimeSelected)="onTimeSelected($event,firstGo)"
+            step="30">
+  </calendar>
+</ion-content>

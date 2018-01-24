@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <!-- {{board.attributes.title}} -->
+      评论
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+	
+	  <img class="fullwidth" src="assets/images/questionImage.png" *ngIf="board.attributes.image=='assets/images/addImage.png'" />
+    <img style="width: 100%" class="fullwidth" [(class)]="board.attributes.filter" src="{{board.attributes.image}}" *ngIf="board.attributes.image!='assets/images/addImage.png'" />
+	  
+
+  
+  <p text-center>
+	 <span class="opacity-txt" ion-right>话题将于{{board.time}}后关闭</span>
+  </p>
+  <ion-card-content>
+      <div>
+        {{board.attributes.content}}
+      </div>
+
+  </ion-card-content>
+  <!-- <ion-list>
+  	<ion-item>
+  		<ion-label>历史评论 <ion-badge color="light">{{board.attributes.commentsCount}}</ion-badge>
+  		</ion-label>
+  	</ion-item>
+  </ion-list> -->
+  
+      <!-- <h5 style="padding-left: 14px;">
+        <ion-label>历史评论 <ion-badge color="light">   
+          {{board.attributes.commentsCount}}</ion-badge>
+        </ion-label>
+      </h5> -->
+
+  <ion-card *ngFor="let comment of comments" class="opacity-txt">
+    <ion-card-header>
+      {{comment.attributes.userName}}于{{comment.createdAt}}发表评论：
+    </ion-card-header>
+    <ion-card-content>
+      {{comment.attributes.content}}
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <div class="opacity-txt div-align-list"  *ngFor="let comment of comments">
+    <p>{{comment.attributes.content}}</p>
+      <p class="opacity-txt">{{comment.attributes.userName}}发表于{{comment.createdAt}}</p>
+  </div> -->
+  <!-- <ion-list>
+	  <ion-item  *ngFor="let comment of comments">
+	    <ion-avatar item-start>
+	      <img src="img/avatar-finn.png">
+	    </ion-avatar>
+
+	    <h3>{{comment.attributes.userName}}</h3>
+      <p>{{comment.attributes.content}}</p>
+	    <h4 class="opacity-txt">{{comment.attributes.userName}}于{{comment.createdAt}}发表</h4>
+	    
+	  </ion-item>
+	</ion-list> -->
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>评论 </ion-label>
+      <ion-textarea type="text" [(ngModel)]="comment.content" rows="6" placeholder="说点什么"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <button ion-button icon-right (click)="sendComment()">发表评论</button>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

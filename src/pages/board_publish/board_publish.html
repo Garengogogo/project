@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      发布新的板子话题
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-card>
+    <p padding>
+      你可以在这里畅所欲言，发布的话题将自动在72小时候删除。
+    </p>
+
+    <form [formGroup]="boardForm"  novalidate>
+      <img [(class)]="board.filter" id="img_show" src="{{board.image}}"  (click)="pickImg();"/>
+      <p padding>图片效果</p>
+      <ion-grid class="img-filter-list">
+        <ion-row>
+          <ion-col col-4>
+            <img width="100%" class="none"
+                 [ngClass]="{'selected':board.filter=='none'}"
+                 src="{{board.image}}" (click)="board.filter='none'"/>
+
+          </ion-col>
+          <ion-col col-4>
+            <img width="100%" class="image-grayscale"
+                 [ngClass]="{'selected':board.filter=='image-grayscale'}"
+                 src="{{board.image}}" (click)="board.filter='image-grayscale'"/>
+
+          </ion-col>
+          <ion-col col-4>
+            <img width="100%" class="image-saturate"
+                 [ngClass]="{'selected':board.filter=='image-saturate'}"
+                 src="{{board.image}}" (click)="board.filter='image-saturate'"/>
+
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <img width="100%" class="image-sepia"
+                 [ngClass]="{'selected':board.filter=='image-sepia'}"
+                 src="{{board.image}}" (click)="board.filter='image-sepia'"/>
+
+          </ion-col>
+          <ion-col col-4>
+            <img width="100%" class="image-invert"
+                 [ngClass]="{'selected':board.filter=='image-invert'}"
+                 src="{{board.image}}" (click)="board.filter='image-invert'"/>
+
+          </ion-col>
+          <ion-col col-4>
+            <img width="100%" class="image-brightness"
+                 [ngClass]="{'selected':board.filter=='image-brightness'}"
+                 src="{{board.image}}" (click)="board.filter='image-brightness'"/>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <img width="100%" class="image-contrast"
+                 [ngClass]="{'selected':board.filter=='image-contrast'}"
+                 src="{{board.image}}" (click)="board.filter='image-contrast'"/>
+
+          </ion-col>
+          <ion-col col-4>
+            <img width="100%" class="image-rotate"
+                 [ngClass]="{'selected':board.filter=='image-rotate'}"
+                 src="{{board.image}}" (click)="board.filter='image-rotate'"/>
+
+          </ion-col>
+          <ion-col col-4>
+            <img width="100%" class="image-blur"
+                 [ngClass]="{'selected':board.filter=='image-blur'}"
+                 src="{{board.image}}" (click)="board.filter='image-blur'"/>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- <ion-item>
+
+        <ion-label stacked>图片特效</ion-label>
+
+
+
+        <ion-select [(ngModel)]="board.filter"  okText="确定" cancelText="取消">
+          <ion-option value="none">无</ion-option>
+          <ion-option value="image-grayscale">灰度</ion-option>
+          <ion-option value="image-saturate">鲜艳</ion-option>
+          <ion-option value="image-sepia">褐色</ion-option>
+          <ion-option value="image-invert">反转</ion-option>
+          <ion-option value="image-brightness">明亮</ion-option>
+          <ion-option value="image-contrast">高对比</ion-option>
+          <ion-option value="image-hue-rotate">变色</ion-option>
+          <ion-option value="image-blur">模糊</ion-option>
+
+        </ion-select>
+
+      </ion-item> -->
+
+      <ion-card-content>
+        <!-- <ion-card-title>
+          <ion-item>
+
+            <ion-label stacked>板子主题</ion-label>
+
+            <ion-input type="text" [(ngModel)]="board.title" placeholder="你想找周围人聊的话题"></ion-input>
+
+          </ion-item>
+        </ion-card-title> -->
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>内容</ion-label>
+            <ion-textarea type="text" [(ngModel)]="board.content" name="content" formControlName="content" rows="6" placeholder="先说点什么吧"></ion-textarea>
+          </ion-item>
+          <div  *ngIf="content.hasError('required') && content.touched" class="error-message">* 请输入内容</div>
+          <div  *ngIf="(content.hasError('maxlength')) && content.touched" class="error-message">* 输入长度不能超过120个字符</div>
+        </ion-list>
+      </ion-card-content>
+      <div padding>
+        <button ion-button color="primary" block (click)="publishBoard()" [disabled]="!boardForm.valid">发布</button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

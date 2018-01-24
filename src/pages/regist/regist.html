@@ -1,0 +1,233 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>用户注册</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="userInfoHead" >
+    <img  src="assets/images/logo.png" style="border-radius: 2px;" >
+
+  </div>
+  <div class="text-center" style="margin: 20px;">
+    <h2>注册成为Maker校园用户</h2>
+  </div>
+  <h3 style="margin: 20px; font-size: 1.2rem;" class="opacity-txt text-center">
+    为打更加纯粹的实践社交，请使用edu邮件进行注册
+  </h3>
+
+  <form [formGroup]="loginForm"  novalidate>
+    <ion-list>
+      <ion-item [class.error]="!username.valid && username.touched">
+        <ion-label stacked>用户名</ion-label>
+        <ion-input type="text"  placeholder="请输入用户名" value="" formControlName="username" clearInput=true></ion-input>
+      </ion-item>
+      <div color="primary" *ngIf="username.hasError('required') && username.touched" class="error-message">* 请输入用户名</div>
+      <div color="primary" *ngIf="(username.hasError('minlength')||username.hasError('maxlength')) && username.touched" class="error-message">* 请输入正确的用户名(最大长度20个字符)</div>
+      <ion-item>
+        <ion-label stacked>密码</ion-label>
+        <ion-input type="password" placeholder="请输入密码" value="" formControlName ="password" clearInput=true></ion-input>
+      </ion-item>
+      <div color="primary" *ngIf="password.hasError('required') && password.touched"
+           class="error-message">* 请输入密码</div>
+      <div color="primary" *ngIf="(password.hasError('minlength')) && password.touched"
+           class="error-message">* 密码长度最少为六位</div>
+      <ion-item>
+        <ion-label stacked>确认密码</ion-label>
+        <ion-input type="password" placeholder="请再次输入密码" value=""
+                   formControlName ="password2" clearInput=true></ion-input>
+      </ion-item>
+      <div color="primary" *ngIf="(loginForm.controls.password2.value != loginForm.controls.password.value) && password2.touched"
+           class="error-message">* 两次输入的密码不一致，请重新输入
+      </div>
+
+
+      <ion-item>
+        <ion-label stacked>邮箱</ion-label>
+        <ion-input type="email" placeholder="请输入邮箱" value="" formControlName ="email"
+                   clearInput=true></ion-input>
+      </ion-item>
+      <div color="primary" *ngIf="email.hasError('required') && email.touched"
+           class="error-message">* 请输入邮箱</div>
+      <div color="primary" *ngIf="(email.hasError('pattern')) && email.touched"
+           class="error-message">* 请输入正确的邮箱格式</div>
+
+      <ion-item>
+        <ion-label stacked>昵称</ion-label>
+        <ion-input type="text" placeholder="请输入昵称" value="" formControlName ="nickname"
+                   clearInput=true></ion-input>
+      </ion-item>
+      <div color="primary" *ngIf="nickname.hasError('required') && nickname.touched"
+           class="error-message">* 请输入昵称</div>
+      <div color="primary" *ngIf="(nickname.hasError('maxlength')) && nickname.touched"
+           class="error-message">* 最大长度20个字符</div>
+      <ion-item>
+        <ion-label stacked>性别</ion-label>
+        <ion-select formControlName ="sex"  okText="确定" cancelText="取消">
+          <ion-option value="1">男</ion-option>
+          <ion-option value="2">女</ion-option>
+        </ion-select>
+      </ion-item>
+      <div color="primary" *ngIf="sex.hasError('required') && sex.touched"
+           class="error-message">* 请选择性别</div>
+    </ion-list>
+    <div padding>
+      <button ion-button color="primary" block (click)="regist(loginForm.value)" [disabled]="!loginForm.valid">注册</button>
+    </div>
+  </form>
+
+</ion-content>
+
+<!-- <ion-slides pager>
+
+  <ion-slide style="background-color: #f0f6ff;">
+    <h2>欢迎使用Maker</h2>
+    <p>
+      This starter project comes with simple tabs-based layout for apps
+      that are going to primarily use a Tabbed UI.
+    </p>
+  </ion-slide>
+
+  <ion-slide style="background-color: #f0fff6">
+    <h2>注册新用户</h2>
+    <ion-list>
+      <ion-item>
+
+        <ion-label stacked>用户名</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.username"></ion-input>
+
+      </ion-item>
+
+
+
+      <ion-item>
+
+        <ion-label stacked>密码</ion-label>
+
+        <ion-input type="password" [(ngModel)]="user_input.password"></ion-input>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label stacked>重复密码</ion-label>
+
+        <ion-input type="password" [(ngModel)]="user_input.password"></ion-input>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label stacked>邮箱</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.email"></ion-input>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label stacked>昵称</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.nickname"></ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-label stacked>性别</ion-label>
+        <ion-select [(ngModel)]="user_input.gender"  okText="确定" cancelText="取消">
+          <ion-option value="1">男</ion-option>
+          <ion-option value="2">女</ion-option>
+
+        </ion-select>
+
+      </ion-item>
+
+    </ion-list>
+
+  </ion-slide>
+
+  <ion-slide style="background-color: #f0f6ff;">
+    <h2>用户信息</h2>
+    <ion-list>
+      <ion-item>
+
+          <ion-label stacked>昵称</ion-label>
+
+          <ion-input type="text" [(ngModel)]="user_input.nickname"></ion-input>
+
+        </ion-item>
+        <ion-item>
+
+          <ion-label stacked>性别</ion-label>
+          <ion-select [(ngModel)]="user_input.gender"  okText="确定" cancelText="取消">
+            <ion-option value="1">男</ion-option>
+            <ion-option value="2">女</ion-option>
+
+          </ion-select>
+
+        </ion-item>
+      </ion-list>
+  </ion-slide>
+
+
+  <ion-slide style="background-color: #fff6f0">
+    <h2>实名认证</h2>
+    <ion-list>
+
+      <ion-item>
+
+        <ion-label stacked>真实姓名</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.realname"></ion-input>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label stacked>电话</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.email"></ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-label stacked>学校</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.university"></ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-label stacked>专业</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.major"></ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-label stacked>班级</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.grade"></ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-label stacked>学号</ion-label>
+
+        <ion-input type="text" [(ngModel)]="user_input.stuno"></ion-input>
+
+      </ion-item>
+
+    </ion-list>
+
+    <div padding-top>
+
+    <button ion-button color="primary" block (click)="regist()">注册</button>
+
+  </div>
+  </ion-slide>
+
+</ion-slides> -->
+
+
+

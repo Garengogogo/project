@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>用户登录</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <h2>欢迎使用Maker</h2>
+  <p>
+    This starter project comes with simple tabs-based layout for apps
+    that are going to primarily use a Tabbed UI.
+  </p> -->
+
+  <div class="userInfoHead" >
+    <img  src="assets/images/logo.png" style="border-radius: 2px;" >
+
+  </div>
+  <div class="text-center" style="margin: 20px;">
+    <h2>欢迎使用Maker</h2>
+  </div>
+  <h3  style="margin: 20px; font-size: 1.2rem;" class="opacity-txt text-center">未来 为你而来</h3>
+    <form [formGroup]="loginForm"  novalidate>
+      <ion-list>
+        <ion-item [class.error]="!username.valid && username.touched">
+          <ion-label stacked>用户名</ion-label>
+          <ion-input type="text"  placeholder="请输入用户名" value="" formControlName="username" clearInput=true></ion-input>
+        </ion-item>
+        <div  *ngIf="username.hasError('required') && username.touched" class="error-message">* 请输入用户名</div>
+        <div  *ngIf="(username.hasError('minlength')||username.hasError('maxlength')) && username.touched" class="error-message">* 请输入正确的用户名</div>
+        <ion-item>
+          <ion-label stacked>密码</ion-label>
+          <ion-input type="password" placeholder="请输入密码" value="" formControlName ="password" clearInput=true></ion-input>
+        </ion-item>
+        <div *ngIf="password.hasError('required') && password.touched" class="error-message">* 请输入密码</div>
+        <div  *ngIf="(password.hasError('minlength')) && password.touched" class="error-message">* 密码长度最少为六位</div>
+      </ion-list>
+      <div>
+        <button ion-button color="primary" block (click)="login(loginForm.value)" [disabled]="!loginForm.valid">登录</button>
+      </div>
+        <div padding-top>
+          <a float-left (click)="openRegistPage();">注册新用户</a>
+          <a float-right >忘记密码？</a>
+        </div>
+
+    </form>
+
+
+</ion-content>

@@ -1,0 +1,14 @@
+ion-fab[bottom][edge].bottom0{
+	bottom:24px;
+}
+.footmenubox{
+	background: rgba(255,255,255,0.8);
+	height: 30%;
+	position: fixed;
+	width: 100%;
+	bottom: -30%;
+	transition: bottom 0.5s;
+}
+.footmenubox.footmenubox-show{
+	bottom: 0;
+}

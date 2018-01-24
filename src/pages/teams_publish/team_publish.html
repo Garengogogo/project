@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      创建小组
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>
+    建立自己的兴趣小组，邀请朋友们加入吧！
+  </p>
+  <form [formGroup]="teamForm"  novalidate>
+
+    <ion-card>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item (click)="pickImg();">
+            <ion-label stacked>小组标识</ion-label>
+            <p>请先将图片处理为120*120大小</p>
+            <ion-thumbnail item-start >
+              <img id="img_show" src="{{board.image}}" />
+            </ion-thumbnail>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>小组名称</ion-label>
+            <ion-input type="text" [(ngModel)]="board.title" formControlName="title" placeholder="XX兴趣小组"></ion-input>
+          </ion-item>
+          <div  *ngIf="title.hasError('required') && title.touched" class="error-message">* 请输入小组名称</div>
+          <div  *ngIf="(title.hasError('maxlength')) && title.touched" class="error-message">* 小组名称长度不能超过50个字符</div>
+
+          <ion-item>
+            <ion-label stacked>小组介绍</ion-label>
+            <ion-textarea type="text" [(ngModel)]="board.content" formControlName="content" rows="6" placeholder="说点什么，让大家加入你的小组"></ion-textarea>
+          </ion-item>
+          <div  *ngIf="content.hasError('required') && content.touched" class="error-message">* 请输入小组介绍</div>
+          <div  *ngIf="(content.hasError('maxlength')) && content.touched" class="error-message">* 小组介绍长度不能超过120个字符</div>
+        </ion-list>
+      </ion-card-content>
+      <div padding>
+        <button ion-button color="primary" block (click)="publishTeam()" [disabled]="!teamForm.valid">创建小组</button>
+      </div>
+    </ion-card>
+  </form>
+
+
+</ion-content>

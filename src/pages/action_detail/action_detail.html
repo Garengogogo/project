@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{action.attributes.title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+	<div class="ctrlbtns">
+		<span *ngIf="isLeader && action.attributes.actionStatus ==1">
+	        <button ion-button clear item-end (click)="deleteAction(action)">取消活动</button>
+	      </span>
+	      <span *ngIf="isLeader && action.attributes.actionStatus ==1">
+	        <button ion-button clear item-end (click)="beginAction(action)" >开始活动</button>
+	      </span>
+	      <span *ngIf="isLeader && action.attributes.actionStatus ==2">
+	        <button ion-button clear item-end (click)="completeAction(action)" >完成活动</button>
+	      </span>
+	      <span *ngIf="isLeader && action.attributes.actionStatus ==0">
+	        <button ion-button clear item-end (click)="renewAction(action)" >恢复活动</button>
+	      </span>
+
+	</div>
+	<ion-card class="action_lable_outbox">
+		<div class="action_status_text beginAction" *ngIf="action.attributes.actionStatus==2">进行中..</div>
+		<div class="action_status_text complateAction" *ngIf="action.attributes.actionStatus==3">已完成</div>
+
+		<img *ngIf="action.attributes.userType>=50 && action.attributes.userType<100" class="action_lable" src="assets/icon/actionlable_1.png">
+    <img *ngIf="action.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
+
+	  <img src="{{action.attributes.image}}">
+	  <ion-card-content>
+
+	    <h2>
+	    	{{action.attributes.title}}
+	    	<small  *ngIf="action.attributes.userType>=50 && action.attributes.userType<100">
+	    	<img src="assets/icon/actionlable_1.png" style="width: 24px; display: inline-block;"> 认证活动</small>
+	    	<small *ngIf="action.attributes.userType>=100"><img src="assets/icon/actionlable_2.png" style="width: 24px;display: inline-block;"> 官方活动</small>
+	    </h2>
+	    <h2 class="content-subtitle">活动时间：{{action.attributes.beginDateTime}}</h2>
+	    <p (click)="openUserDetail(action)">
+        <a color="light" ion-left  small >
+          <!--<ion-icon name="glasses"></ion-icon>-->
+          发布者：{{action.attributes.userName}}
+        </a>
+       </p>
+	    <p class="opacity-txt border-bt">发布时间：{{action.createdAt}}</p>
+
+
+	    
+
+	  	<h2 class="content-subtitle">活动详情</h2>
+       <div class="opacity-txt" border-bt>
+
+	  		{{action.attributes.content}}
+	  		<p *ngIf="!action.attributes.content">活动发起者未添加活动说明，请慎重加入。</p>
+
+	  		<div class="text-box">
+	  			<p>Maker团队温馨提示：</p>
+	  			<p>请各位同学仔细阅读活动的相关说明，避免同学之间产生不必要的误会。为减少同学们的顾虑，Maker的用户将严格控制在学生群体范围内，所有认证活动和官方活动都将由Maker团队严格审核甚至主办，请同学们放心参与。如有任何意见和建议，请大家及时向我们反馈。</p>
+	  		</div>
+	  	</div>
+
+	  	<h2 class="content-subtitle">活动地点</h2>
+		<div id="mapPosPicker" style="width: 100%; height: 200px;"></div>
+	  	<p class="opacity-txt">{{action.attributes.addr}}</p>
+
+	  	<ion-list *ngIf="isMember || isLeader">
+	  		<ion-list-header class="m-b-0" style="padding-left: 0;">
+			   参与者 <ion-badge>{{applyList_status2}}</ion-badge>
+			</ion-list-header>
+
+	  		<ion-item style="padding-left: 0;">
+	  			<ng-container *ngFor="let memb of applyList">
+		  			<div  class="headimg_list_o" item-left  (click)="openUserDetailApply(memb);" *ngIf="memb.attributes.status==2">
+		  				<img src="assets/images/questionImage.png" *ngIf="!memb.attributes.headimg">
+          				<img [(src)]="memb.attributes.headimg"
+            				*ngIf="memb.attributes.headimg">
+		  			</div>
+
+	  			</ng-container>
+
+
+
+
+	  		</ion-item>
+
+	  	</ion-list>
+	  	<ion-list *ngIf="isLeader">
+	  		<ion-list-header class="m-b-0"  style="padding-left: 0;">
+			   有{{applyList_status0}}人想参与活动
+			</ion-list-header>
+
+	  		<ion-item style="padding-left: 0;">
+	  			<ng-container *ngFor="let memb of applyList">
+		  			<ion-avatar item-left  (click)="openUserDetailApply(memb);" *ngIf="memb.attributes.status==0">
+		  				<img src="assets/images/questionImage.png" *ngIf="!memb.attributes.headimg">
+          				<img [(src)]="memb.attributes.headimg"
+            				*ngIf="memb.attributes.headimg">
+		  			</ion-avatar>
+	  			</ng-container>
+
+	  		</ion-item>
+	  	</ion-list>
+	  	<ion-list  *ngIf="isMember || isLeader">
+	  		<ion-list-header class="m-b-0" style="padding-left: 0;">
+			   活动交流
+			</ion-list-header>
+
+	  		<ion-item *ngFor="let comment of comments" style="padding-left: 0;">
+	  			<ion-avatar item-start>
+	  				<!-- <img margin-horizontal src="assets/images/questionImage.png"> -->
+
+	  				<p class="userName">{{comment.attributes.userName}}</p>
+
+
+	  			</ion-avatar>
+	  			<p class="opacity-txt">{{comment.createdAt}}</p>
+	  			<div class="pre-wrap opacity-txt"><p>{{comment.attributes.content}}</p>
+	  			</div>
+	  		</ion-item>
+	  	</ion-list>
+
+	  </ion-card-content>
+
+  </ion-card>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-list  *ngIf="isLogedIn" style="margin-bottom: 0;">
+    	<ion-item *ngIf="!isMember && !isLeader">
+  			<button ion-button clear item-end (click)="applyJoin()">我要参加</button>
+  		</ion-item>
+  		<ion-item *ngIf="isMember || isLeader">
+  			<ion-textarea type="text" [(ngModel)]="comment.content" rows="1" placeholder="说点什么"></ion-textarea>
+  			<button ion-button clear item-end (click)="sendComment()">发言</button>
+  		</ion-item>
+
+      
+	</ion-list>
+	<ion-list *ngIf="!isLogedIn" style="margin-bottom: 0;">
+		<ion-item >
+			登录后可查看活动成员及评论
+		</ion-item>
+	</ion-list>
+  </ion-toolbar>
+</ion-footer>

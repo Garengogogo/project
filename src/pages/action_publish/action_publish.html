@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      发布活动
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="actionForm"  novalidate>
+    <ion-card class="action_lable_outbox">
+      <img *ngIf="userInfoPlus.attributes.userType>=50 && userInfoPlus.attributes.userType<100" class="action_lable" src="assets/icon/actionlable_1.png">
+      <img *ngIf="userInfoPlus.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
+
+      <img id="img_show" src="{{action.image}}"  (click)="pickImg();" />
+
+      <ion-card-content>
+        <p *ngIf="userInfoPlus.attributes.userType>=100 && userInfoPlus.attributes.userType<100">认证活动</p>
+        <p *ngIf="userInfoPlus.attributes.userType>=100">官方活动</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list>
+
+      <ion-item>
+        <ion-label stacked>活动名称</ion-label>
+        <ion-input type="text" [(ngModel)]="action.title" formControlName="title" placeholder="学生运动"></ion-input>
+      </ion-item>
+      <div  *ngIf="title.hasError('required') && title.touched" class="error-message">* 请输入活动名称</div>
+      <div  *ngIf="(title.hasError('maxlength')) && title.touched" class="error-message">* 活动名称长度不能超过50个字符</div>
+
+
+      <ion-item>
+        <ion-label stacked>活动开始时间</ion-label>
+        <ion-datetime formControlName="datetime" displayFormat="YYYY-MM-DDTHH:mm:ssTZD" pickerFormat="YYYY-MM-DDTHH:mm" [(ngModel)]="action.beginDateTime" [(min)]="datePickerConfig.min" [(max)]="datePickerConfig.max"></ion-datetime>
+      </ion-item>
+      <div  *ngIf="datetime.hasError('required') && datetime.touched" class="error-message">* 请选择活动开始时间</div>
+      <!-- <ion-item>
+        <ion-label stacked>活动地点</ion-label>
+        <ion-input type="text" [(ngModel)]="action.addr" placeholder=""></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <ion-label stacked>活动介绍</ion-label>
+        <ion-textarea type="text" [(ngModel)]="action.content" formControlName="content" rows="6" placeholder="活动目的、活动方式等"></ion-textarea>
+      </ion-item>
+      <div  *ngIf="content.hasError('required') && content.touched" class="error-message">* 请输入活动介绍</div>
+      <div  *ngIf="(content.hasError('maxlength')) && content.touched" class="error-message">* 活动介绍长度不能超过120个字符</div>
+
+    </ion-list>
+    <ion-card>
+      <ion-item>
+        <h2>活动地点</h2>
+      </ion-item>
+      <div id="mapPosPicker" style="width: 100%; height: 200px;"></div>
+      <ion-card-content>
+        <p>{{action.addr}}</p>
+      </ion-card-content>
+    </ion-card>
+  <!--<ion-footer>-->
+    <ion-toolbar>
+      <button ion-button color="primary" full (click)="publishAction()" [disabled]="!actionForm.valid">发布活动</button>
+    </ion-toolbar>
+  <!--</ion-footer>-->
+</form>
+</ion-content>
+

@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{userDetail.attributes.username}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+	
+	<div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==1">
+			<span>认证用户</span>
+			<img src="assets/icon/usertype1.gif" > 
+		</div>
+		<div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==2">
+			<span>联络官</span>
+			<img src="assets/icon/usertype2.gif" > 
+		</div>
+		<div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==50">
+			<span>认证商户</span>
+			<img src="assets/icon/usertype4.gif" > 
+		</div>
+		<div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==100">
+			<span>管理员</span>
+			<img src="assets/icon/usertype3.gif" > 
+		</div>
+
+		<div class="userInfoHead"  (click)="pickImg();">
+			<img  src="assets/images/questionImage.png" *ngIf="!userDetailPlus.attributes.headimg">
+			<img  [(src)]="userDetailPlus.attributes.headimg"
+			*ngIf="userDetailPlus.attributes.headimg">
+		</div>
+		<div class="text-center">
+			<h2>{{userDetail.attributes.username}}</h2>
+		</div>
+		<div class="info-line">
+			<label>真实姓名</label>
+			<span *ngIf="userDetail.attributes.realName">{{userDetail.attributes.realName}}</span>
+			<span *ngIf="!userDetail.attributes.realName">--</span>
+		</div>
+		<div class="info-line">
+			<label>注册时间</label>
+			<span>{{userDetail.createdAt}}</span>
+		</div>
+
+	
+		  
+       <ion-list class="opacity-txt div-align-list">
+
+	  		<ion-item>
+
+		        <ion-label stacked>电话</ion-label>
+
+		        <ion-input type="text" [(ngModel)]="userDetailPlus.attributes.tel"></ion-input>
+
+		    </ion-item>
+		    <ion-item>
+
+		        <ion-label stacked>生日</ion-label>
+
+		        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="userDetailPlus.attributes.birthday"></ion-datetime>
+
+		    </ion-item>
+		    <ion-item>
+
+		        <ion-label stacked>专业</ion-label>
+
+		        <ion-input type="text" [(ngModel)]="userDetailPlus.attributes.major"></ion-input>
+
+		    </ion-item>
+		    
+		    <ion-item>
+
+		        <ion-label stacked>个人说明</ion-label>
+
+		        <ion-textarea type="text" [(ngModel)]="userDetailPlus.attributes.resume" place-holder="用简短的文字告诉大家，你是怎样的人，有什么特长爱好，喜欢哪些活动"></ion-textarea>
+
+		    </ion-item>
+
+	  	</ion-list>
+	  	
+	  	
+	  
+  
+  
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-list>
+    	<ion-item>
+  			<button ion-button clear item-start (click)="save();">保存</button>		
+  			<button ion-button clear item-end (click)="cancel();">取消</button>
+  		</ion-item>
+	</ion-list>
+  </ion-toolbar>
+</ion-footer>

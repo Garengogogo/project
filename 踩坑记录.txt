@@ -1,0 +1,5 @@
+buildÊ±£¬±àÒëcamera×é¼þ½ø±¨´í£¬ÌáÊ¾ÓÐÂÒÂë£¬½â¾ö£º
+Ç¿ÖÆÒÆ³ý²å¼þ cordova-plugin-compat È»ºóÖØ×°
+
+ionic cordova plugin remove cordova-plugin-compat --force
+ionic cordova plugin add cordova-plugin-compat

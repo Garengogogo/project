@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{team.attributes.title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+	<div class="ctrlbtns">
+		<span *ngIf="isLeader && team.attributes.teamStatus ==1">
+        <button ion-button clear item-end (click)="deleteTeam(team)">解散小组</button>
+      </span>
+
+	</div>
+
+	<ion-card>
+
+	  <ion-card-content>
+		  <ion-list>
+			  <ion-item>
+			    <ion-thumbnail item-start>
+			      <img src="{{team.attributes.image}}">
+			    </ion-thumbnail>
+			    <h2>{{team.attributes.title}}</h2>
+			    <p (click)="openUserDetail(team)">
+            <a color="light" ion-left  small >
+              创建者：{{team.attributes.userName}}
+            </a>
+          </p>
+
+			    <p>创建时间：{{team.createdAt}}</p>
+
+			  </ion-item>
+
+
+       </ion-list>
+       <div class="opacity-txt div-align-list">
+
+	  		<p>{{team.attributes.content}}</p>
+
+	  	</div>
+	  	<ion-list *ngIf="isMember || isLeader">
+	  		<ion-list-header class="m-b-0">
+			   成员 <ion-badge>{{applyList_status2}}</ion-badge>
+			</ion-list-header>
+
+	  		<ion-item>
+	  			<ng-container *ngFor="let memb of applyList">
+		  			<div  class="headimg_list_o" item-left  (click)="openUserDetailApply(memb);" *ngIf="memb.attributes.status==2">
+		  				<img src="assets/images/questionImage.png" *ngIf="!memb.attributes.headimg">
+          				<img [(src)]="memb.attributes.headimg"
+            				*ngIf="memb.attributes.headimg">
+		  			</div>
+
+	  			</ng-container>
+
+
+
+
+	  		</ion-item>
+
+	  	</ion-list>
+	  	<ion-list *ngIf="isLeader">
+	  		<ion-list-header class="m-b-0">
+			   有{{applyList_status0}}人申请加入小组
+			</ion-list-header>
+
+	  		<ion-item>
+	  			<ng-container *ngFor="let memb of applyList">
+		  			<ion-avatar item-left  (click)="openUserDetailApply(memb);" *ngIf="memb.attributes.status==0">
+		  				<img src="assets/images/questionImage.png" *ngIf="!memb.attributes.headimg">
+          				<img [(src)]="memb.attributes.headimg"
+            				*ngIf="memb.attributes.headimg">
+		  			</ion-avatar>
+	  			</ng-container>
+
+	  		</ion-item>
+	  	</ion-list>
+	  	<ion-list  *ngIf="isMember || isLeader">
+	  		<ion-list-header class="m-b-0">
+			   内部交流
+			</ion-list-header>
+
+	  		<ion-item *ngFor="let comment of comments">
+	  			<ion-avatar item-start>
+	  				<!-- <img margin-horizontal src="assets/images/questionImage.png"> -->
+
+	  				<p class="userName">{{comment.attributes.userName}}</p>
+
+
+	  			</ion-avatar>
+	  			<p class="opacity-txt">{{comment.createdAt}}</p>
+	  			<div class="pre-wrap opacity-txt"><p>{{comment.attributes.content}}</p>
+	  			</div>
+	  		</ion-item>
+	  	</ion-list>
+
+	  </ion-card-content>
+
+  </ion-card>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-list  *ngIf="isLogedIn" style="margin-bottom: 0;">
+    	<ion-item *ngIf="!isMember && !isLeader">
+  			<button ion-button clear item-end (click)="applyJoin()">申请加入</button>
+  		</ion-item>
+  		<ion-item *ngIf="isMember || isLeader">
+  			<ion-textarea type="text" [(ngModel)]="comment.content" rows="1" placeholder="说点什么"></ion-textarea>
+  			<button ion-button clear item-end (click)="sendComment()">发言</button>
+  		</ion-item>
+
+      
+
+	</ion-list>
+	<ion-list *ngIf="!isLogedIn" style="margin-bottom: 0;">
+		<ion-item >
+			登录后可查看小组成员及评论
+		</ion-item>
+	</ion-list>
+  </ion-toolbar>
+</ion-footer>

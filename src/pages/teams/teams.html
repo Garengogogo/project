@@ -1,0 +1,76 @@
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="circles"
+      refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!--<h2>团队在这里</h2>-->
+
+  <div>
+    <ion-segment [(ngModel)]="team" (ionChange)="segmentChangedTeam($event)">
+      <ion-segment-button value="myteam">
+        我的小组
+      </ion-segment-button>
+      <ion-segment-button value="jointeam">
+        加入的小组
+      </ion-segment-button>
+      <ion-segment-button value="allteam">
+        所有的小组
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="team">
+    <!--我的小组-->
+    <ion-list *ngSwitchCase="'myteam'">
+        <ng-container *ngFor="let team of joinedTeamsMy" >
+          <ion-item  (click)="openTeamDetailPage(team)" *ngIf="team.attributes.userName==currentUser.attributes.username">
+            <ion-thumbnail item-start>
+              <img src="{{team.attributes.image}}">
+            </ion-thumbnail>
+            <h2>{{team.attributes.title}}</h2>
+            <p>{{team.attributes.content}}</p>
+            <p>创建者：{{team.attributes.userName}}</p>
+
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+    <!--加入的小组-->
+    <ion-list *ngSwitchCase="'jointeam'">
+      <ion-item *ngFor="let team of joinedTeams" (click)="openTeamDetailPage(team)">
+          <ion-thumbnail item-start>
+            <img src="{{team.attributes.image}}">
+          </ion-thumbnail>
+          <h2>{{team.attributes.title}}</h2>
+          <p>{{team.attributes.content}}</p>
+          <p>创建者：{{team.attributes.userName}}</p>
+        </ion-item>
+    </ion-list>
+
+    <!--所有小组-->
+    <ion-list *ngSwitchCase="'allteam'">
+        <ion-item *ngFor="let team of teams" (click)="openTeamDetailPage(team)">
+          <ion-thumbnail item-start>
+            <img src="{{team.attributes.image}}">
+          </ion-thumbnail>
+          <h2>{{team.attributes.title}}</h2>
+          <p>{{team.attributes.content}}</p>
+          <p>创建者：{{team.attributes.userName}}</p>
+        </ion-item>
+    </ion-list>
+  </div>
+
+  <!--*ngIf="!lastValue"-->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)"  threshold="1px">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="正在刷新..."
+      ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
