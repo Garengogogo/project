@@ -3,3 +3,6 @@ buildÊ±£¬±àÒëcamera×é¼þ½ø±¨´í£¬ÌáÊ¾ÓÐÂÒÂë£¬½â�
 
 ionic cordova plugin remove cordova-plugin-compat --force
 ionic cordova plugin add cordova-plugin-compat
+
+
+https://www.jianshu.com/p/3e156999eaa4
