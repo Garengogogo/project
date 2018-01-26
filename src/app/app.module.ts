@@ -41,7 +41,8 @@ import { ActionService } from '../service/actionService';
 import { CalendarService } from '../service/calendarService';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
-
+import { ProfilesPage } from '../pages/profiles/profiles';
+import { ToastService } from '../providers/util/toast.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     UserDetailPage,
     UserDetailEditPage,
     MessagesDetailPage,
-    CalendarDetailPage
+    CalendarDetailPage,
+    ProfilesPage
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,8 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     UserDetailPage,
     UserDetailEditPage,
     MessagesDetailPage,
-    CalendarDetailPage
+    CalendarDetailPage,
+    ProfilesPage
   ],
   providers: [
     StatusBar,
@@ -110,6 +113,7 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     TeamService,
     ActionService,
     CalendarService,
+    ToastService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     { provide: LOCALE_ID, useValue: 'zh-CN'}
   ]
