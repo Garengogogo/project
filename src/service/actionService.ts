@@ -124,7 +124,7 @@ export class ActionService {
     //分页
     query.skip(this.skipValue);
     query.greaterThanOrEqualTo("actionStatus", 1);
-    query.limit(3);
+    query.limit(2);
     query.find({
       success:function(res){
         console.log('获取Action列表成功',res);
@@ -449,7 +449,7 @@ export class ActionService {
           errorCallback(err);
         });
       }
-      
+
     },function(resp,err){
       let alert = thisPage.alertCtrl.create({
           title: '用户未认证',

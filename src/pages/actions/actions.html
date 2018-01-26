@@ -7,41 +7,21 @@
       refreshingText="正在刷新...">
     </ion-refresher-content>
   </ion-refresher>
-  	<!-- <ion-list>
-	  <ion-item *ngFor="let action of actions" (click)="openActionDetailPage(action)">
-	    <ion-thumbnail item-start>
-	      <img src="{{action.attributes.image}}">
-	    </ion-thumbnail>
-	    <h2>{{action.attributes.title}}</h2>
-	    <p>{{action.attributes.content}}</p>
-	    <p>创建者：{{action.attributes.userName}}</p>
-
-	  </ion-item>
-	</ion-list> -->
 
   <div>
-    <ion-segment [(ngModel)]="action" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value="allaction">
-        所有的活动
-      </ion-segment-button>
-      <ion-segment-button value="joinaction">
-        加入的活动
-      </ion-segment-button>
-      <ion-segment-button value="myaction">
-        我的活动
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-
-  <div [ngSwitch]="action">
+    <ion-item (click)="isShow=!isShow" *ngIf="actions.length>1">
+      所有的活动
+      <ion-icon name="ios-arrow-down" item-right  *ngIf="isShow"    ></ion-icon>
+      <ion-icon name="ios-arrow-forward" item-right *ngIf="!isShow" ></ion-icon>
+    </ion-item>
     <!--所有活动-->
-    <ion-list *ngSwitchCase="'allaction'">
+    <ion-list *ngIf="isShow">
       <ion-card class="action-card action_lable_outbox anim-opacityShow" *ngFor="let action of actions" (click)="openActionDetailPage(action)" >
         <div class="action_status_text beginAction" *ngIf="action.attributes.actionStatus==2">进行中..</div>
         <div class="action_status_text complateAction" *ngIf="action.attributes.actionStatus==3">已完成</div>
 
         <img *ngIf="action.attributes.userType>=50 && action.attributes.userType<100" class="action_lable" src="assets/icon/actionlable_1.png">
-    <img *ngIf="action.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
+        <img *ngIf="action.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
 
 
         <img src="assets/images/questionImage.png" *ngIf="action.attributes.image=='assets/images/addImage.png'" />
@@ -50,24 +30,32 @@
           <div class="card-title">{{action.attributes.title}}</div>
           <div class="card-subtitle">活动时间：{{action.attributes.beginDateTime}}</div>
         </div>
-        
+
       </ion-card>
     </ion-list>
 
+
+
+
+
+    <ion-item (click)="isShow1=!isShow1" *ngIf="actionsJoin.length>1">
+      加入的活动
+      <ion-icon name="ios-arrow-down" item-right  *ngIf="isShow1"    ></ion-icon>
+      <ion-icon name="ios-arrow-forward" item-right *ngIf="!isShow1" ></ion-icon>
+    </ion-item>
     <!--加入的活动-->
     <!--*ngIf="jionedActIds.indexOf(action.id)!=-1"-->
-
-    <ion-list *ngSwitchCase="'joinaction'">
+    <ion-list *ngIf="isShow1">
       <ng-container *ngFor="let action of actionsJoin">
         <ion-card class="action-card action_lable_outbox anim-opacityShow" (click)="openActionDetailPage(action)"
         >
-        <div class="action_status_text beginAction" *ngIf="action.attributes.actionStatus==2">活动进行中...</div>
-        <div class="action_status_text complateAction" *ngIf="action.attributes.actionStatus==3">活动已结束</div>
-        <div class="action_status_text" *ngIf="action.attributes.actionStatus==1">活动未开始</div>
+          <div class="action_status_text beginAction" *ngIf="action.attributes.actionStatus==2">活动进行中...</div>
+          <div class="action_status_text complateAction" *ngIf="action.attributes.actionStatus==3">活动已结束</div>
+          <div class="action_status_text" *ngIf="action.attributes.actionStatus==1">活动未开始</div>
 
 
-        <img *ngIf="action.attributes.userType>=50 && action.attributes.userType<100" class="action_lable" src="assets/icon/actionlable_1.png">
-    <img *ngIf="action.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
+          <img *ngIf="action.attributes.userType>=50 && action.attributes.userType<100" class="action_lable" src="assets/icon/actionlable_1.png">
+          <img *ngIf="action.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
 
           <img src="assets/images/questionImage.png" *ngIf="action.attributes.image=='assets/images/addImage.png'" />
           <img [(src)]="action.attributes.image" *ngIf="action.attributes.image!=='assets/images/addImage.png'"/>
@@ -79,19 +67,23 @@
       </ng-container>
     </ion-list>
 
+
+    <ion-item (click)="isShow2=!isShow2" *ngIf="actionsCreate.length>1">
+      我的活动
+      <ion-icon name="ios-arrow-down" item-right  *ngIf="isShow2"    ></ion-icon>
+      <ion-icon name="ios-arrow-forward" item-right *ngIf="!isShow2" ></ion-icon>
+    </ion-item>
+
     <!--我的活动-->
-    <ion-list *ngSwitchCase="'myaction'">
-
-
-
+    <ion-list *ngIf="isShow2">
       <ng-container *ngFor="let action of actionsCreate">
         <ion-card class="action-card action_lable_outbox anim-opacityShow" (click)="openActionDetailPage(action)" *ngIf="action.attributes.userName==currentUser.attributes.username">
           <div class="action_status_text beginAction" *ngIf="action.attributes.actionStatus==2">进行中..</div>
-    <div class="action_status_text complateAction" *ngIf="action.attributes.actionStatus==3">已完成</div>
-    
+          <div class="action_status_text complateAction" *ngIf="action.attributes.actionStatus==3">已完成</div>
+
 
           <img *ngIf="action.attributes.userType>=50 && action.attributes.userType<100" class="action_lable" src="assets/icon/actionlable_1.png">
-    <img *ngIf="action.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
+          <img *ngIf="action.attributes.userType>=100" class="action_lable" src="assets/icon/actionlable_2.png">
 
           <img src="assets/images/questionImage.png" *ngIf="action.attributes.image=='assets/images/addImage.png'" />
           <img [(src)]="action.attributes.image" *ngIf="action.attributes.image!=='assets/images/addImage.png'"/>

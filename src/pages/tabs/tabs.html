@@ -35,19 +35,19 @@
     <div class="userhead" *ngIf="userInfo.attributes.username" (click)="openUserDetailEditPage();" menuClose >
       <div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==1">
         <span>认证用户</span>
-        <img src="assets/icon/usertype1.gif" > 
+        <img src="assets/icon/usertype1.gif" >
       </div>
       <div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==2">
         <span>联络官</span>
-        <img src="assets/icon/usertype2.gif" > 
+        <img src="assets/icon/usertype2.gif" >
       </div>
       <div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==50">
         <span>认证商户</span>
-        <img src="assets/icon/usertype4.gif" > 
+        <img src="assets/icon/usertype4.gif" >
       </div>
       <div class="usertypeicon" *ngIf="userDetailPlus.attributes.userType==100">
         <span>管理员</span>
-        <img src="assets/icon/usertype3.gif" > 
+        <img src="assets/icon/usertype3.gif" >
       </div>
 
       <div class="userInfoHead">
@@ -59,21 +59,21 @@
         <h2>{{userInfo.attributes.username}}</h2>
       </div>
     </div>
-    
+
     <div class="userhead" *ngIf="!userInfo.attributes.username" menuClose (click)="openLoginPage()">
-      
+
       <div class="userInfoHead">
         <img  src="assets/images/questionImage.png" >
-        
+
       </div>
       <div class="text-center">
         <h2>未登录用户</h2>
       </div>
     </div>
-    
-    
+
+
     <ion-list>
-      
+
 
       <button menuClose ion-item >
         账户安全
@@ -112,8 +112,8 @@
 
           <img src="assets/images/questionImage.png" *ngIf="admAction.attributes.image=='assets/images/addImage.png'" />
           <img [(src)]="admAction.attributes.image" *ngIf="admAction.attributes.image!=='assets/images/addImage.png'"/>
-          
-          
+
+
         </ion-card>
       </ion-list>
     </div>
@@ -132,10 +132,10 @@
     </ion-fab-list>
   </ion-fab> -->
   <ion-tabs #mainTabs class="richy-tabs">
-	  <ion-tab [root]="tab1Root" tabTitle="板子" tabIcon="easel"></ion-tab>
-	  <ion-tab [root]="tab2Root" tabTitle="行动" tabIcon="walk"></ion-tab>
-	  <ion-tab [root]="tab3Root" tabTitle="小组" tabIcon="contacts"></ion-tab>
-	  <ion-tab [root]="tab4Root" tabTitle="日程" tabIcon="timer"></ion-tab>
+    <ion-tab [root]="tab1Root" tabTitle="行动" tabIcon="walk"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="搜索" tabIcon="search"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="喜欢" tabIcon="heart"></ion-tab>
+    <ion-tab [root]="tab4Root" tabTitle="我" tabIcon="man"></ion-tab>
 	</ion-tabs>
   <ion-fab mini bottom center edge class="bottom0">
       <button ion-fab mini (click)="showfootmenubox=!showfootmenubox;">
@@ -149,7 +149,7 @@
         <ion-col col-4>
           <button ion-fab  style="margin: auto;" color="danger" class="publish-board" (click)="openBoardPublishPage()"><ion-icon name="easel"></ion-icon></button>
         </ion-col>
-        
+
         <ion-col col-4>
           <button color="secondary" style="margin: auto;" ion-fab class="publish-action" (click)="openActionPublishPage()"><ion-icon name="walk"></ion-icon></button>
         </ion-col>
@@ -158,12 +158,12 @@
           <button color="primary" style="margin: auto;" ion-fab mi class="publish-board" (click)="openTeamPublishPage()"><ion-icon name="contacts"></ion-icon></button>
         </ion-col>
       </ion-row>
-      
+
     </ion-grid>
-    
-    
-    
+
+
+
   </div>
-  
+
 </ion-content>
 
