@@ -21,7 +21,7 @@ import { BoardPage } from '../pages/board/board';
 import { BoardPublishPage } from '../pages/board_publish/board_publish';
 import { BoardCommentPage } from '../pages/board_comment/board_comment';
 import { TabsPage } from '../pages/tabs/tabs';
-import { CalendarPage } from '../pages/calendar/calendar';
+// import { CalendarPage } from '../pages/CalendarPage/calendar';
 
 import { LoginPage } from '../pages/login/login';
 import { RegistPage } from '../pages/regist/regist';
@@ -39,7 +39,7 @@ import { BoardService } from '../service/boardService';
 import { TeamService } from '../service/teamService';
 import { ActionService } from '../service/actionService';
 import { CalendarService } from '../service/calendarService';
-import { NgCalendarModule  } from 'ionic2-calendar';
+// import { NgCalendarModule  } from 'ionic2-calendar';
 import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
 import { ProfilesPage } from '../pages/profiles/profiles';
 import { ToastService } from '../providers/util/toast.service';
@@ -54,7 +54,7 @@ import { ToastService } from '../providers/util/toast.service';
     BoardPage,
     BoardPublishPage,
     BoardCommentPage,
-    CalendarPage,
+    // CalendarPage,
     TabsPage,
     LoginPage,
     AMapPage,
@@ -71,7 +71,7 @@ import { ToastService } from '../providers/util/toast.service';
   imports: [
     BrowserModule,
     HttpModule,
-    NgCalendarModule,
+    // NgCalendarModule,
     ReactiveFormsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
@@ -86,7 +86,7 @@ import { ToastService } from '../providers/util/toast.service';
     BoardPage,
     BoardPublishPage,
     BoardCommentPage,
-    CalendarPage,
+    // CalendarPage,
     TabsPage,
     LoginPage,
     AMapPage,
