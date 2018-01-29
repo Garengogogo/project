@@ -49,6 +49,7 @@ import { IonicPageModule } from 'ionic-angular';
 import {RelativeTime} from "../pipes/relative-time";
 import {EmojiPickerComponentModule} from "../components/emoji-picker/emoji-picker.module";
 import {EmojiProvider} from "../providers/emoji";
+import { MyPage } from '../pages/my/my';
 @NgModule({
   declarations: [
     MyApp,
@@ -72,7 +73,8 @@ import {EmojiProvider} from "../providers/emoji";
     MessagesDetailPage,
     CalendarDetailPage,
     ProfilesPage,
-    RelativeTime
+    RelativeTime,
+    MyPage
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ import {EmojiProvider} from "../providers/emoji";
     UserDetailEditPage,
     MessagesDetailPage,
     CalendarDetailPage,
-    ProfilesPage
+    ProfilesPage,
+    MyPage
   ],
   providers: [
     StatusBar,

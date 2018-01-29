@@ -21,6 +21,7 @@ import { UserGeoLocation } from '../../service/userGeoLocation';
 import { ActionService } from '../../service/actionService';
 import { ActionDetailPage } from '../action_detail/action_detail';
 import { ProfilesPage } from '../profiles/profiles';
+import { MyPage } from '../my/my';
 declare var Bmob;
 
 @Component({
@@ -35,7 +36,7 @@ export class TabsPage {
   tab1Root = ActionsPage  ;
   tab2Root = ActionsPage;
   tab3Root = ProfilesPage;
-  tab4Root = ProfilesPage;
+  tab4Root = MyPage;
 
   newMessageNum=0;
   userDetailPlus={
