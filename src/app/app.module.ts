@@ -32,7 +32,7 @@ import{ UserDetailPage} from '../pages/user_detail/user_detail';
 import{ UserDetailEditPage} from '../pages/user_detail_edit/user_detail_edit';
 //import { MessagesDetailPage } from '../pages/messages-detail/messages-detail';
 import { MessagesDetailPage } from '../pages/message_detail/messages_detail';
-
+import { HttpClientModule } from "@angular/common/http";
 import { UserGeoLocation } from '../service/userGeoLocation';
 import { LocUserInfo } from '../service/locUser';
 import { BoardService } from '../service/boardService';
@@ -43,7 +43,12 @@ import { CalendarService } from '../service/calendarService';
 import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
 import { ProfilesPage } from '../pages/profiles/profiles';
 import { ToastService } from '../providers/util/toast.service';
-
+// import { ChatService, ChatMessage, UserInfo } from "../providers/chat-service";
+import {ChatService} from "../providers/chat-service";
+import { IonicPageModule } from 'ionic-angular';
+import {RelativeTime} from "../pipes/relative-time";
+import {EmojiPickerComponentModule} from "../components/emoji-picker/emoji-picker.module";
+import {EmojiProvider} from "../providers/emoji";
 @NgModule({
   declarations: [
     MyApp,
@@ -66,13 +71,16 @@ import { ToastService } from '../providers/util/toast.service';
     UserDetailEditPage,
     MessagesDetailPage,
     CalendarDetailPage,
-    ProfilesPage
+    ProfilesPage,
+    RelativeTime
   ],
   imports: [
     BrowserModule,
     HttpModule,
     // NgCalendarModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    EmojiPickerComponentModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -114,6 +122,8 @@ import { ToastService } from '../providers/util/toast.service';
     ActionService,
     CalendarService,
     ToastService,
+    ChatService,
+    EmojiProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     { provide: LOCALE_ID, useValue: 'zh-CN'}
   ]
