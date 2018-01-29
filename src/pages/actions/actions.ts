@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,App,ViewController , Events} from 'ionic-angular';
-
+import { NavController,App,ViewController , Events, IonicPage} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { ActionService } from '../../service/actionService';
@@ -14,6 +13,9 @@ import { LocUserInfo } from '../../service/locUser';
 export class ActionsPage {
   action: string = "allaction";
   lastValue : boolean = false;
+  isShow : boolean = true;
+  isShow1 : boolean = true;
+  isShow2 : boolean = true;
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -27,11 +29,13 @@ export class ActionsPage {
     events.subscribe('actionDelete', (id) => {
       // user and time are the same arguments passed in `events.publish(user, time)`
       if(id) {
-        this.selectedFriends(this.currentUser.attributes.segmentType)
+        this.selectedFriends()
       }
     });
 
   }
+
+
   actions=[];
   actionsCreate=[];
   actionsJoin=[];
@@ -72,15 +76,7 @@ export class ActionsPage {
   doInfinite(infiniteScroll)
   {
     setTimeout(() => {
-      // if(this.currentUser.attributes.segmentType == 'myaction'){
-      //   this.getUserMakeAc();
-      // } else if(this.currentUser.attributes.segmentType == 'joinaction') {
-      //   //用户加入的活动
-      //   this.getJoinedActions();
-      // } else {
-      //   this.getActionsPulldown();
-      // }
-      this.selectedFriends(this.currentUser.attributes.segmentType);
+       this.selectedFriends();
       infiniteScroll.complete();
     },500);
   }
@@ -112,34 +108,15 @@ export class ActionsPage {
   doRefresh(event){
   	var thisPage=this;
     //用户创建的活动
-    if(this.currentUser.attributes.segmentType == 'myaction'){
-      this.actionService.skipValueCreate = 0;
-      this.getUserMakeAc();
-      event.complete();
-    } else if(this.currentUser.attributes.segmentType == 'joinaction') {
-      //用户加入的活动
-      this.actionService.skipValueJoin = 0;
-      thisPage.getJoinedActions();
-      event.complete();
-    }
-    else {
-      //所有活动
-      this.actionService.skipValue = 0;
-      this.getActions();
-      event.complete();
-      // this.actionService.getActionsRefresh(function(res){
-      //   thisPage.actions =[];
-      //   thisPage.actions=res;
-      //
-      //   event.complete();
-      //
-      // },function(err){
-      //
-      //   event.complete();
-      // });
-    }
-
-
+    this.actionService.skipValueCreate = 0;
+    this.getUserMakeAc();
+    //用户加入的活动
+    this.actionService.skipValueJoin = 0;
+    thisPage.getJoinedActions();
+    //所有活动
+    this.actionService.skipValue = 0;
+    this.getActions();
+    event.complete();
   }
   openActionDetailPage(action){
     console.log('openActionDetailPage...');
@@ -168,45 +145,23 @@ export class ActionsPage {
      // loader.dismiss();
     });
   }
-  //segmentChanged点击切换
-  segmentChanged(ev){
-    this.currentUser.attributes.segmentType = ev.value;
-    console.log(ev)
-    if(ev.value == 'myaction'){
-      this.getUserMakeAc();
-    } else if(ev.value == 'joinaction') {
-      this.getJoinedActions();
-    } else {
-      this.getActions();
-    }
-  }
-  selectedFriends(value) {
-    if(value == 'myaction'){
+  selectedFriends() {
       this.actionService.skipValueCreate += 2;
       this.getUserMakeAc();
-    } else if(value == 'joinaction') {
       this.actionService.skipValueJoin += 2;
       this.getJoinedActions();
-    } else {
       this.actionService.skipValue += 2;
       this.getActions();
-    }
   }
 
   ionViewWillEnter(){
     let thisPage=this;
-    // this.getActions();
+    this.getActions();
     this.locUserInfo.getLcoUserInfo(function(locUser){
       thisPage.currentUser=locUser;
-      // thisPage.getJoinedActions();
-      thisPage.currentUser.attributes.segmentType = thisPage.action;
-      if(thisPage.action == 'myaction'){
         thisPage.getUserMakeAc();
-      } else if(thisPage.action == 'joinaction') {
         thisPage.getJoinedActions();
-      } else {
         thisPage.getActions();
-      }
     },function(err){
 
     });

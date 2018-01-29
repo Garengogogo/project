@@ -20,7 +20,8 @@ import { UserGeoLocation } from '../../service/userGeoLocation';
 
 import { ActionService } from '../../service/actionService';
 import { ActionDetailPage } from '../action_detail/action_detail';
-
+import { ProfilesPage } from '../profiles/profiles';
+import { MyPage } from '../my/my';
 declare var Bmob;
 
 @Component({
@@ -28,10 +29,15 @@ declare var Bmob;
 })
 export class TabsPage {
   rootNav=this.appCtrl.getRootNav();
-  tab1Root = BoardPage;
+  // tab1Root = BoardPage  ;
+  // tab2Root = ActionsPage;
+  // tab3Root = TeamsPage;
+  // tab4Root = CalendarPage;
+  tab1Root = ActionsPage  ;
   tab2Root = ActionsPage;
-  tab3Root = TeamsPage;
-  tab4Root = CalendarPage;
+  tab3Root = ProfilesPage;
+  tab4Root = MyPage;
+
   newMessageNum=0;
   userDetailPlus={
     attributes:{
@@ -168,13 +174,13 @@ export class TabsPage {
   getAdmActions(){
     console.log('获取管理员公告活动');
     var thisPage=this;
-    
+
     this.actionService.getAdmActions(function(res){
       if(res.length>0){
         thisPage.admAction = res[0];
       }
     },function(err){
-      
+
     });
   }
   openActionDetailPage(action){
@@ -210,7 +216,7 @@ export class TabsPage {
     }else{
       return true
     }
-    
-    
+
+
   }*/
 }

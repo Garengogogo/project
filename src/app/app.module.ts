@@ -21,7 +21,7 @@ import { BoardPage } from '../pages/board/board';
 import { BoardPublishPage } from '../pages/board_publish/board_publish';
 import { BoardCommentPage } from '../pages/board_comment/board_comment';
 import { TabsPage } from '../pages/tabs/tabs';
-import { CalendarPage } from '../pages/calendar/calendar';
+// import { CalendarPage } from '../pages/CalendarPage/calendar';
 
 import { LoginPage } from '../pages/login/login';
 import { RegistPage } from '../pages/regist/regist';
@@ -32,17 +32,24 @@ import{ UserDetailPage} from '../pages/user_detail/user_detail';
 import{ UserDetailEditPage} from '../pages/user_detail_edit/user_detail_edit';
 //import { MessagesDetailPage } from '../pages/messages-detail/messages-detail';
 import { MessagesDetailPage } from '../pages/message_detail/messages_detail';
-
+import { HttpClientModule } from "@angular/common/http";
 import { UserGeoLocation } from '../service/userGeoLocation';
 import { LocUserInfo } from '../service/locUser';
 import { BoardService } from '../service/boardService';
 import { TeamService } from '../service/teamService';
 import { ActionService } from '../service/actionService';
 import { CalendarService } from '../service/calendarService';
-import { NgCalendarModule  } from 'ionic2-calendar';
+// import { NgCalendarModule  } from 'ionic2-calendar';
 import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
-
-
+import { ProfilesPage } from '../pages/profiles/profiles';
+import { ToastService } from '../providers/util/toast.service';
+// import { ChatService, ChatMessage, UserInfo } from "../providers/chat-service";
+import {ChatService} from "../providers/chat-service";
+import { IonicPageModule } from 'ionic-angular';
+import {RelativeTime} from "../pipes/relative-time";
+import {EmojiPickerComponentModule} from "../components/emoji-picker/emoji-picker.module";
+import {EmojiProvider} from "../providers/emoji";
+import { MyPage } from '../pages/my/my';
 @NgModule({
   declarations: [
     MyApp,
@@ -53,7 +60,7 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     BoardPage,
     BoardPublishPage,
     BoardCommentPage,
-    CalendarPage,
+    // CalendarPage,
     TabsPage,
     LoginPage,
     AMapPage,
@@ -64,13 +71,18 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     UserDetailPage,
     UserDetailEditPage,
     MessagesDetailPage,
-    CalendarDetailPage
+    CalendarDetailPage,
+    ProfilesPage,
+    RelativeTime,
+    MyPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    NgCalendarModule,
+    // NgCalendarModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    EmojiPickerComponentModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -84,7 +96,7 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     BoardPage,
     BoardPublishPage,
     BoardCommentPage,
-    CalendarPage,
+    // CalendarPage,
     TabsPage,
     LoginPage,
     AMapPage,
@@ -95,7 +107,9 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     UserDetailPage,
     UserDetailEditPage,
     MessagesDetailPage,
-    CalendarDetailPage
+    CalendarDetailPage,
+    ProfilesPage,
+    MyPage
   ],
   providers: [
     StatusBar,
@@ -110,6 +124,9 @@ import { CalendarDetailPage } from '../pages/calendar-detail/calendar-detail';
     TeamService,
     ActionService,
     CalendarService,
+    ToastService,
+    ChatService,
+    EmojiProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     { provide: LOCALE_ID, useValue: 'zh-CN'}
   ]
