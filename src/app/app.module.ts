@@ -50,6 +50,7 @@ import {RelativeTime} from "../pipes/relative-time";
 import {EmojiPickerComponentModule} from "../components/emoji-picker/emoji-picker.module";
 import {EmojiProvider} from "../providers/emoji";
 import { MyPage } from '../pages/my/my';
+import { SearchPage } from '../pages/search/search';
 @NgModule({
   declarations: [
     MyApp,
@@ -74,7 +75,8 @@ import { MyPage } from '../pages/my/my';
     CalendarDetailPage,
     ProfilesPage,
     RelativeTime,
-    MyPage
+    MyPage,
+      SearchPage
   ],
   imports: [
     BrowserModule,
@@ -109,7 +111,8 @@ import { MyPage } from '../pages/my/my';
     MessagesDetailPage,
     CalendarDetailPage,
     ProfilesPage,
-    MyPage
+    MyPage,
+      SearchPage
   ],
   providers: [
     StatusBar,

@@ -22,6 +22,7 @@ import { ActionService } from '../../service/actionService';
 import { ActionDetailPage } from '../action_detail/action_detail';
 import { ProfilesPage } from '../profiles/profiles';
 import { MyPage } from '../my/my';
+import { SearchPage } from '../search/search';
 declare var Bmob;
 
 @Component({
@@ -34,7 +35,7 @@ export class TabsPage {
   // tab3Root = TeamsPage;
   // tab4Root = CalendarPage;
   tab1Root = ActionsPage  ;
-  tab2Root = ActionsPage;
+  tab2Root = SearchPage;
   tab3Root = ProfilesPage;
   tab4Root = MyPage;
 
