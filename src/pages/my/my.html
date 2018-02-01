@@ -66,13 +66,17 @@
 
     </ion-item>
     <ion-item>
-
       <ion-label stacked>专业</ion-label>
-
       <ion-input disabled="disabled" readonly type="text" [(ngModel)]="userDetailPlus.attributes.major"></ion-input>
-
     </ion-item>
-
+      <ion-item>
+          <ion-label stacked>兴趣</ion-label>
+          <ion-input disabled="disabled" readonly type="text" [(ngModel)]="userDetailPlus.attributes.hobby"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label stacked>学校</ion-label>
+          <ion-input disabled="disabled" readonly type="text" [(ngModel)]="userDetailPlus.attributes.school"></ion-input>
+      </ion-item>
     <ion-item>
 
       <ion-label stacked>个人说明</ion-label>

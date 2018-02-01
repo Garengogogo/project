@@ -37,10 +37,12 @@ export class MyPage {
   };
   userDetailPlus={
     attributes:{
-      tel:'',
-      major:'',
+      tel:'0054444944',
+      major:'网络工程',
       birthday:'1900-01-08 00:00:00',
       resume:'',
+      hobby:'爱好女',
+      school:'华云大学',
       headimg:''
     }
   }
