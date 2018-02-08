@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams,App } from 'ionic-angular';
+import {SearchDetailPage} from 'ionic-angular';
 
 /**
  * Generated class for the SearchPage page.
@@ -13,8 +14,10 @@ import {NavController, NavParams } from 'ionic-angular';
   templateUrl: 'search.html',
 })
 export class SearchPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  search: string = "myuser";
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public appCtrl:App,
+  ) {
   }
     getItems(ev: any) {
         // Reset items back to all of the items
@@ -27,8 +30,15 @@ export class SearchPage {
 
         }
     }
+
+  rootNav=this.appCtrl.getRootNav();
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
+  }
+  openSearchDetailPage(search){
+    this.rootNav.push(SearchDetailPage,{
+      search:search
+    });
   }
 
 }

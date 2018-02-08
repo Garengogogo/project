@@ -15,4 +15,62 @@
 
 <ion-content padding>
     <ion-searchbar (ionInput)="getItems($event)" placeholder="输入搜索内容..."></ion-searchbar>
+  <div>
+    <ion-segment [(ngModel)]="search" (ionChange)="segmentChangedTeam($event)">
+      <ion-segment-button value="myuser">
+        用户
+      </ion-segment-button>
+      <ion-segment-button value="myready">
+        筹备
+      </ion-segment-button>
+      <ion-segment-button value="myaction">
+        行动
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="search">
+    <!--我的小组-->
+    <ion-list *ngSwitchCase="'myuser'">
+      <ng-container *ngFor="let team of joinedTeamsMy" >
+
+        <ion-item  (click)="openSearchDetailPage(team)" >
+          <ion-thumbnail item-start>
+            <img src="{{team.attributes.image}}">
+          </ion-thumbnail>
+          <h2>{{team.attributes.title}}</h2>
+          <p>{{team.attributes.content}}</p>
+          <p>创建者：{{team.attributes.userName}}</p>
+
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+    <!--加入的小组-->
+    <ion-list *ngSwitchCase="'myready'">
+      <ion-item *ngFor="let team of joinedTeams" (click)="openSearchDetailPage(team)">
+        <ion-thumbnail item-start>
+          <img src="{{team.attributes.image}}">
+        </ion-thumbnail>
+        <h2>{{team.attributes.title}}</h2>
+        <p>{{team.attributes.content}}</p>
+        <p> <ion-icon name="heart"></ion-icon>{{team.attributes.userName}}</p>
+      </ion-item>
+    </ion-list>
+
+    <!--所有小组-->
+    <ion-list *ngSwitchCase="'myaction'">
+      <ion-item *ngFor="let team of teams" (click)="openSearchDetailPage(team)">
+        <ion-thumbnail item-start>
+          <img src="{{team.attributes.image}}">
+        </ion-thumbnail>
+        <h2>{{team.attributes.title}}</h2>
+        <p>{{team.attributes.content}}</p>
+        <p>创建者：{{team.attributes.userName}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+
 </ion-content>
