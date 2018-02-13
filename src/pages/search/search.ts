@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams,App } from 'ionic-angular';
-import {SearchDetailPage} from 'ionic-angular';
+// import {SearchDetailPage} from 'ionic-angular';
 
 /**
  * Generated class for the SearchPage page.
@@ -31,14 +31,20 @@ export class SearchPage {
         }
     }
 
+  segmentChangedTeam(ev){
+    console.log(ev);
+  }
+
+
   rootNav=this.appCtrl.getRootNav();
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
   openSearchDetailPage(search){
-    this.rootNav.push(SearchDetailPage,{
-      search:search
-    });
+    console.log(search);
+    // this.rootNav.push(SearchDetailPage,{
+    //   search:search
+    // });
   }
 
 }
