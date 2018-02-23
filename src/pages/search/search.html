@@ -51,26 +51,42 @@
 
     <!--加入的小组-->
     <ion-list *ngSwitchCase="'myready'">
-      <ion-item *ngFor="let team of joinedTeams" (click)="openSearchDetailPage(team)">
-        <ion-thumbnail item-start>
-          <img src="{{team.attributes.image}}">
-        </ion-thumbnail>
-        <h2>{{team.attributes.title}}</h2>
-        <p>{{team.attributes.content}}</p>
-        <p> <ion-icon name="heart"></ion-icon>{{team.attributes.userName}}</p>
-      </ion-item>
+        <ion-item  (click)="openSearchDetailPage()" >
+            <ion-thumbnail item-start>
+                <img src="../../assets/mock/ian-avatar.png">
+            </ion-thumbnail>
+            <h2 style="margin-top: 5px;">刘化<i style="margin-left: 10px;">
+                2小时以前</i><span style="float: right" class="fa  fa-clock-o">13:21:45</span></h2>
+            <p>Ionic includes a copy script file that is called during the
+                build process when you run ionic serve and it’s
+                responsible for moving certain resources from node_modules
+                to the www folder, like ionicons.
+                The location of this script is as follows
+            </p>
+            <div >
+                <span  class="fa fa-commenting">2355</span>
+                <span style="float: right;" class="fa fa-thumbs-o-up" >6747</span>
+            </div>
+        </ion-item>
     </ion-list>
 
     <!--所有小组-->
     <ion-list *ngSwitchCase="'myaction'">
-      <ion-item *ngFor="let team of teams" (click)="openSearchDetailPage(team)">
-        <ion-thumbnail item-start>
-          <img src="{{team.attributes.image}}">
-        </ion-thumbnail>
-        <h2>{{team.attributes.title}}</h2>
-        <p>{{team.attributes.content}}</p>
-        <p>创建者：{{team.attributes.userName}}</p>
-      </ion-item>
+        <ion-item  (click)="openSearchDetailPage()" >
+            <ion-thumbnail item-start>
+                <img src="../../assets/mock/ian-avatar.png">
+            </ion-thumbnail>
+            <h2 style="margin-top: 5px;">刘化<i style="margin-left: 10px;">
+                2小时以前</i>
+                <span>成都大学</span><span style="float: right" class="fa  fa-check-square"></span></h2>
+            <p>馒头馒头
+            </p>
+            <div >
+                <span style="width: 33%;" class="fa fa-home">23</span>
+                <span style="width: 33%;"  class="fa fa-thumbs-o-up" >67</span>
+                <span style="width: 33%;" class="fa fa-user-plus" >6</span>
+            </div>
+        </ion-item>
     </ion-list>
   </div>
 
